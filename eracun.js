@@ -48,8 +48,14 @@ function davcnaStopnja(izvajalec, zanr) {
 // Prikaz seznama pesmi na strani
 streznik.get('/', function(zahteva, odgovor) {
   if (!zahteva.session.prijavStranka) {
+<<<<<<< HEAD
     odgovor.redirect('/prijava')
   } else {
+=======
+      odgovor.redirect('/prijava')
+  } 
+  else {
+>>>>>>> izbira-stranke
   pb.all("SELECT Track.TrackId AS id, Track.Name AS pesem, \
           Artist.Name AS izvajalec, Track.UnitPrice * " +
           razmerje_usd_eur + " AS cena, \
@@ -213,19 +219,32 @@ streznik.post('/prijava', function(zahteva, odgovor) {
     	  Phone, Fax, Email, SupportRepId) \
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
       //TODO: add fields and finalize
+<<<<<<< HEAD
       stmt.run(polja.FirstName, polja.LastName, polja.Company, polja.Address, polja.City, polja.State, polja.Country, polja.PostalCode, polja.Phone, polja.Fax, polja.Email, 3); 
       stmt.finalize();
+=======
+        stmt.run(polja.FirstName, polja.LastName, polja.Company, polja.Address, polja.City, polja.State, polja.Country, polja.PostalCode, polja.Phone, polja.Fax, polja.Email, 3); 
+ +      stmt.finalize();
+>>>>>>> izbira-stranke
     } catch (err) {
       napaka2 = true;
     }
     
   
+<<<<<<< HEAD
   //  odgovor.end();
     
     vrniStranke(function(napakaPridStr, stranke) {
       vrniRacune(function(napakaRac, racuni) {
           if (napakaPridStr | napakaRac | napaka1 | napaka2) {
             odgovor.render('prijava', {sporocilo: "Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.", seznamStrank: stranke, seznamRacunov: racuni});  
+=======
+    //odgovor.end();
+    vrniStranke(function(napakaPridStr, stranke){
+      vrniRacune(function(napakaRac, racuni) {
+          if(napakaPridStr | napakaRac | napaka1 | napaka2) {
+            odgovor.render('prijava', {sporocilo: "Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.", seznamStrank: stranke, seznamRacunov: racuni});
+>>>>>>> izbira-stranke
           }
           else {
             odgovor.render('prijava', {sporocilo: "Stranka je bila uspešno registrirana.", seznamStrank: stranke, seznamRacunov: racuni});
@@ -256,7 +275,11 @@ streznik.post('/stranka', function(zahteva, odgovor) {
 
 // Odjava stranke
 streznik.post('/odjava', function(zahteva, odgovor) {
+<<<<<<< HEAD
     zahteva.session.prijavStranka = null;
+=======
+  zahteva.session.prijavStranka = null;
+>>>>>>> izbira-stranke
     odgovor.redirect('/prijava') 
 })
 
